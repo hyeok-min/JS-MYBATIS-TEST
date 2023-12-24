@@ -13,6 +13,6 @@ public class UserController {
 
     @GetMapping("/home")
     public String home(Model model){
-        return "/home.html";
+        return "home";
     }
 }
