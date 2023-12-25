@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.category.Categories;
 import com.example.demo.entity.Board;
+import com.example.demo.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
 
+    private final BoardService boardService;
     @GetMapping("/board/{categories}")
     public String getBoardList(@PathVariable("categories") Categories categories, Model model){
         model.addAttribute("category",categories);
+        String cate = categories.name();
+        log.info("cate==={}",cate);
+        model.addAttribute("board",boardService.findAll(cate));
         log.info("==={}",categories);
-        return "boards/board";
+        return "boardList";
     }
+    @GetMapping("/board/{categories}/{id}")
+    public void detailBoard(){}
+    @GetMapping("/board/{categories}/update/{id}")
+    public void updateBoard(){}
 }

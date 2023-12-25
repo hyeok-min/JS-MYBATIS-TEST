@@ -5,10 +5,9 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 카멜케이스 적용 -->
     </settings>
     <typeAliases> <!-- 자바파일에대한 전역 별칭 설정 -->
-        <typeAlias type="com.example.demo.entity.User" alias="User"/> <!-- User클래스 alias 등록 -->
-        <typeAlias type="com.example.demo.entity.Member" alias="member"/> <!-- Person클래스 alias 등록 -->
+        <typeAlias type="com.example.demo.entity.Board" alias="Board"/> <!-- board클래스 alias 등록 -->
     </typeAliases>
     <mappers>
-        <mapper resource="mybatis.mapper.UserMapper.xml"/>
+        <mapper resource="mybatis.mapper.BoardMapper.xml"/>
     </mappers>
 </configuration>

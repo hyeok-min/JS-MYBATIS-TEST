@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 @Repository
 public interface BoardMapper {
-    List<Board> findAll(Categories category);
+    public List<Board> findAll(String cate);
 }

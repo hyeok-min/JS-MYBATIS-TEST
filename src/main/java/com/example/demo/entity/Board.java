@@ -13,6 +13,7 @@ public class Board {
     private long boardId;
     private String title;
     private String writer;
+    private String content;
     private LocalDateTime dateTime;
     private Long count;
     private String category;
