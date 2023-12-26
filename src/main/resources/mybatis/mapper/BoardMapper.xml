@@ -5,6 +5,9 @@
     <select id="findAll" resultType="Board" parameterType="String">
         SELECT * FROM board where category=#{cate};
     </select>
+    <select id="findById" resultType="Board" parameterType="map">
+        select * from board where category=#{cate} and boardId=#{id};
+    </select>
 
 
 </mapper>

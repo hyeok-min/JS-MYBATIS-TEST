@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -16,4 +17,5 @@ public class BoardService {
     public List<Board> findAll(String cate){
         return boardMapper.findAll(cate);
     }
+    public Board findById(Map<String,Object> map){return boardMapper.findById(map);}
 }

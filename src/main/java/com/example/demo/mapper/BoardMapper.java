@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
 public interface BoardMapper {
     public List<Board> findAll(String cate);
+    public Board findById(Map<String,Object> map);
 }
