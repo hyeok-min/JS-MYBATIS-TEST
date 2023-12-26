@@ -33,7 +33,7 @@
             height:100%;
         }
     </style>
-        <h1 style="padding-left:20px"><a href="/">Home</a></h1>
+        <h1 style="padding-left:20px"><a href="/home">Home</a></h1>
     </head>
     <body>
     <div style="display: flex; justify-content: center; padding-top:20px">
@@ -60,7 +60,7 @@
                 <th style="width: 10%">조회수</th>
             </tr>
             <tr th:each="boardLists : ${board}">
-                <td th:text="${boardLists.boardId}"></td>
+                <td th:text="${boardLists.category}"></td>
                 <td><a th:text="${boardLists.title}"></a></td>
                 <td th:text="${boardLists.writer}" >writer</td>
                 <td th:text="${#temporals.format(boardLists.dateTime, 'yyyy-dd-MM HH:mm')}"></td>
@@ -68,5 +68,6 @@
             </tr>
             </forEach>
         </table>
+    </div>
     </body>
 </html>

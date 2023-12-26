@@ -33,7 +33,7 @@
             height:100%;
         }
     </style>
-  <h1 style="padding-left:20px"><a href="/">Home</a></h1>
+  <h1 style="padding-left:20px"><a href="/home">Home</a></h1>
 </head>
 <body>
 <div style="display: flex; justify-content: center; padding-top:20px">
@@ -89,7 +89,7 @@
     </tr>
     </forEach>
   </table>
-  <div align="center" style="margin-top:10px;"> <a th:href="@{/board/category/insert/{numInsertG}(numInsertG=${num})}">새글 등록</a> </div>
+  <div align="center" style="margin-top:10px;"> <a th:href="@{/board/insert/{categories}(categories=${category})}">새글 등록</a> </div>
 </div>
 </body>
 </html>

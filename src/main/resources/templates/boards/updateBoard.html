@@ -20,9 +20,23 @@
             border: 1px solid #444444;
             text-align: left;
         }
+        nav{
+            width:200px;
+            border-right:1px solid: #ddd;
+            position:fixed;
+            height:100%;
+        }
     </style>
     </head>
     <body>
+    <nav>
+        <ul>
+            <li><h3><a href="/board/Movie"><i class="fa-solid fa-cat"></i> Movie</a></h3></li>
+            <li><h3><a href="/board/Drama"><i class="fa-solid fa-cat"></i> Drama</a></h3></li>
+            <li><h3><a href="/board/Entertainment"><i class="fa-solid fa-cat"></i> Entertainment</a></h3></li>
+            <li><h3><a href="/board/Free"><i class="fa-solid fa-cat"></i> Free</a></h3></li>
+        </ul>
+    </nav>
     <div style="text-align: center;">
         <h2>글수정</h2>
         <br/>
@@ -31,15 +45,15 @@
             <table style="width: 600px; margin: auto">
                 <tr>
                     <td width="70" style="background-color: dodgerblue; color: cornsilk">제목</td>
-                    <td><input type="text" th:field="${boardEdit.title}" placeholder="제목을 입력하세요. (20자 이하)" name="title"/></td>
+                    <td><input type="text" th:text="${board.title}" placeholder="제목을 입력하세요. (20자 이하)" name="title"/></td>
                 </tr>
                 <tr>
                     <td style="background-color: dodgerblue; color: cornsilk">작성자</td>
-                    <td><input type="text" th:field="${boardEdit.writer}" readonly/> </td>
+                    <td><text th:text="${board.writer}" readonly/> </td>
                 </tr>
                 <tr>
                     <td style="background-color: dodgerblue; color: cornsilk">내용</td>
-                    <td><textarea name="content" th:field="${boardEdit.content}" cols="50" rows="10"></textarea></td>
+                    <td><textarea name="content" th:text="${board.content}" cols="50" rows="10"></textarea></td>
                 </tr>
             </table>
             <div style="width:835px ;text-align: right; margin-top:10px">

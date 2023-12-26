@@ -24,11 +24,28 @@
             display: flex;
             justify-content: space-between;
         }
-
+        nav{
+            width:200px;
+            border-right:1px solid: #ddd;
+            position:fixed;
+            height:100%;
+        }
     </style>
+    <h1 style="padding-left:20px"><a href="/">Home</a></h1>
   </head>
   <body>
-  <h1 th:text="${category}"></h1><br/>
+  <div style="display: flex; justify-content: center; padding-top:20px">
+    <h1 th:text="${category}"></h1>
+  </div>
+  <br/>
+  <nav>
+    <ul>
+      <li><h3><a href="/board/Movie"><i class="fa-solid fa-cat"></i> Movie</a></h3></li>
+      <li><h3><a href="/board/Drama"><i class="fa-solid fa-cat"></i> Drama</a></h3></li>
+      <li><h3><a href="/board/Entertainment"><i class="fa-solid fa-cat"></i> Entertainment</a></h3></li>
+      <li><h3><a href="/board/Free"><i class="fa-solid fa-cat"></i> Free</a></h3></li>
+    </ul>
+  </nav>
   <div style="text-align: center;">
     <hr>
     <form>
@@ -37,42 +54,36 @@
           <td width="60" style="background-color: dodgerblue; color: cornsilk">제목</td>
           <td>
             <div class="justify-content-between">
-              <div> <p th:text="${boardDetail.title}"/> </div>
-              <div> <p text=" "></p> </div>
-              <div style="padding:0px 3px 0px 0px;">
-                <a th:text="${#temporals.format(boardDetail.createDate, 'yyyy-MM-dd HH:mm')}"/>
-              </div>
+              <div> <p th:text="${board.title}"/> </div>
             </div>
           </td>
         </tr>
         <tr>
           <td style="background-color: dodgerblue; color: cornsilk">작성자</td>
-          <td th:text="${boardDetail.writer}" /></td>
+          <td th:text="${board.writer}" /></td>
         </tr>
         <tr>
           <td style="background-color: dodgerblue; color: cornsilk">내용</td>
           <td>
-            <p> <text th:text="${boardDetail.content}" width="530px" height="auto" readonly/></p>
+            <p> <text th:text="${board.content}" width="530px" height="auto" readonly/></p>
           </td>
         </tr>
         <tr>
           <td style="background-color: dodgerblue; color: cornsilk">조회수</td>
-          <td th:text="${boardDetail.count}" /></td>
+          <td th:text="${board.count}" /></td>
         </tr>
         <tr>
           <td colspan="2">
             <div style="text-align: right;">
-              <button type="button" th:onclick="|location.href='@{/board/edit/{boardId}(boardId=${boardDetail.id})}'|"
-                      th:if="${boardDetail.writer}==${member}">수정</button>
-              <button type="button" th:onclick="|location.href='@{/board/delete/{boardId}(boardId=${boardDetail.id})}'|"
-                      th:if="${boardDetail.writer}==${member}">삭제</button>
+              <button type="button" th:onclick="|location.href='@{/board/{categories}/update/{id}(categories=${board.category},id=${board.boardId})}'|">수정</button>
+              <button type="button" th:onclick="|location.href='@{/board/{categories}/delete/{id}(categories=${board.category},id=${board.boardId})}'|">삭제</button>
             </div>
           </td>
         </tr>
       </table>
     </form>
       <div align="right">
-        <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/board/category/{num}(num=${boardDetail.category})}'|" >목록</button>
+<!--        <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/board/category/{num}(num=${boardDetail.category})}'|" >목록</button>-->
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,12 @@ import java.util.Map;
 public class BoardController {
 
     private final BoardService boardService;
+
+    @GetMapping("/home")
+    public String getTop10(Model model){
+        model.addAttribute("board",boardService.findTop10());
+        return "home";
+    }
     @GetMapping("/board/{categories}")
     public String getBoardList(@PathVariable("categories") Categories categories, Model model){
         log.info("====boardlist in====");
@@ -42,14 +49,40 @@ public class BoardController {
         model.addAttribute("board",boardService.findById(map));
         return "boards/detailBoard";
     }
+    @GetMapping("/board/insert/{categories}")
+    public String insertBoard(@PathVariable("categories") Categories categories,Model model){
+        model.addAttribute("category",categories);
+        return "boards/insertBoard";
+    }
+    @PostMapping("/board/insert/{categories}")
+    public String insertBoard(@PathVariable("categories") Categories categories, Board board){
+        boardService.insertBoard(board);
+        String end="redirect:/board/"+categories;
+        return end;
+    }
 
-//    @PostMapping("/board/{categories}/insert")
-//    public Board insertBoard(Board board){
-//
-//    }
-//
-//    @GetMapping("/board/{categories}/update/{id}")
-//    public void updateBoard(){}
-//
+    @GetMapping("/board/{categories}/update/{id}")
+    public String updateBoard(@PathVariable("categories") Categories categories,@PathVariable("id") Long id,Model model){
+        log.info("====update in====");
+        Map<String,Object> map =new HashMap<>();
+        model.addAttribute("category",categories);
+        String cate = categories.name();
+        map.put("cate",cate);
+        map.put("id",id);
+        model.addAttribute("board",boardService.findById(map));
+        return "boards/updateBoard"; }
+    @PostMapping("/board/{categories}/update/{id}")
+    public String updateBoard(@PathVariable("categories") Categories categories,@PathVariable("id") Long id,Board board){
+        boardService.updateBoard(board);
+        String end="redirect:/board/"+categories+"/"+id;
+        return end;
+    }
+
+    @GetMapping("/board/{categories}/delete/{id}")
+    public String deleteBoard(@PathVariable("categories") Categories categories,@PathVariable("id") Long id){
+        boardService.deleteBoard(id);
+        String end="redirect:/board/"+categories;
+        return end;
+    }
 
 }

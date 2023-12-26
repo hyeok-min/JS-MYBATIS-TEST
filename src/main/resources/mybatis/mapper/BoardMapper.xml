@@ -2,12 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.mapper.BoardMapper"> <!--인터페이스 mapper 경로 -->
+    <select id="findtop10" resultType="Board">
+        select * from board order by count desc limit 10;
+    </select>
+
     <select id="findAll" resultType="Board" parameterType="String">
         SELECT * FROM board where category=#{cate};
     </select>
+
     <select id="findById" resultType="Board" parameterType="map">
         select * from board where category=#{cate} and boardId=#{id};
     </select>
 
+    <insert id="insertBoard" parameterType="Board">
+        insert into board(title,writer,content,dateTime,count,category)
+        values(#{title},#{writer},#{content},now(),'0',#{category})
+    </insert>
 
+    <delete id="deleteBoard" parameterType="Long">
+        delete from board where boardId=#{id};
+    </delete>
+
+    <update id="updateBoard" parameterType="Board">
+        update board set
+            title=#{title},
+            content=#{content}
+        where
+            boardId=#{boardId};
+    </update>
 </mapper>
