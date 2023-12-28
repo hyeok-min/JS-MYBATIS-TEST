@@ -13,7 +13,12 @@
     <select id="findById" resultType="Board" parameterType="map">
         select * from board where category=#{cate} and boardId=#{id};
     </select>
-
+    <update id="countBoard" parameterType="Board">
+        update board set
+            count=#{count}
+        where
+            boardId=#{boardId};
+    </update>
     <insert id="insertBoard" parameterType="Board">
         insert into board(title,writer,content,dateTime,count,category)
         values(#{title},#{writer},#{content},now(),'0',#{category})

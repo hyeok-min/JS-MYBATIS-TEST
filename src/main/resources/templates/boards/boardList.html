@@ -39,18 +39,8 @@
 <div style="display: flex; justify-content: center; padding-top:20px">
   <h1 th:text="${category}"></h1>
 </div>
-<div style="float:right; padding-right:150px">
-  <form th:action="@{/board/category/{num}(num=${categoryNum})}" method="get">
-    <input type="text" style="width:300px" name="searchText" placeholder="검색">
-    <button type="submit">검색</button>
-  </form>
-</div>
 
 <br/><br/><br/>
-<!--    <div style="float:right" th:if="searchText!=null">-->
-<div style="float:right" th:if="${not #strings.isEmpty(param.searchText)}">
-  <span th:text="${param.searchText} +' 에 대한 결과입니다.'"></span>
-</div>
 <nav>
   <ul>
     <li><h3><a href="/board/Movie"><i class="fa-solid fa-cat"></i> Movie</a></h3></li>

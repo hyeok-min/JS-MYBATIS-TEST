@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +43,10 @@ public class BoardController {
         String cate = categories.name();
         map.put("cate",cate);
         map.put("id",id);
-        model.addAttribute("board",boardService.findById(map));
+        Board board=boardService.findById(map);
+        board.setCount(board.getCount() + 1);
+        boardService.countBoard(board);
+        model.addAttribute("board",board);
         return "boards/detailBoard";
     }
     @GetMapping("/board/insert/{categories}")
@@ -55,7 +55,7 @@ public class BoardController {
         return "boards/insertBoard";
     }
     @PostMapping("/board/insert/{categories}")
-    public String insertBoard(@PathVariable("categories") Categories categories, Board board){
+    public String insertBoard(@PathVariable("categories") Categories categories,Board board){
         boardService.insertBoard(board);
         String end="redirect:/board/"+categories;
         return end;
@@ -70,9 +70,11 @@ public class BoardController {
         map.put("cate",cate);
         map.put("id",id);
         model.addAttribute("board",boardService.findById(map));
+        log.info("{}",boardService.findById(map));
         return "boards/updateBoard"; }
     @PostMapping("/board/{categories}/update/{id}")
     public String updateBoard(@PathVariable("categories") Categories categories,@PathVariable("id") Long id,Board board){
+        board.setBoardId(id);
         boardService.updateBoard(board);
         String end="redirect:/board/"+categories+"/"+id;
         return end;

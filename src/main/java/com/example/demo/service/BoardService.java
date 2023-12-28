@@ -19,6 +19,7 @@ public class BoardService {
         return boardMapper.findAll(cate);
     }
     public Board findById(Map<String,Object> map){return boardMapper.findById(map);}
+    public void countBoard(Board board){ boardMapper.countBoard(board);}
     public void insertBoard(Board board){ boardMapper.insertBoard(board);}
     public void deleteBoard(Long id){boardMapper.deleteBoard(id);}
     public void updateBoard(Board board){boardMapper.updateBoard(board);}

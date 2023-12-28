@@ -17,4 +17,5 @@ public interface BoardMapper {
     public void insertBoard(Board board);
     public void deleteBoard(Long id);
     public void updateBoard(Board board);
+    public void countBoard(Board board);
 }

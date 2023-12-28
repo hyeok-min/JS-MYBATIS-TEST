@@ -42,10 +42,12 @@
         <br/>
         <!--    th:object="${boardEdit}"-->
         <form th:action method="post" >
+            <input type="hidden" name="id" id="id" th:value="${board.boardId}">
             <table style="width: 600px; margin: auto">
                 <tr>
                     <td width="70" style="background-color: dodgerblue; color: cornsilk">제목</td>
-                    <td><input type="text" th:text="${board.title}" placeholder="제목을 입력하세요. (20자 이하)" name="title"/></td>
+                    <td><input type="text" th:field="${board.title}" placeholder="제목을 입력하세요. (20자 이하)" name="title"/></td>
+
                 </tr>
                 <tr>
                     <td style="background-color: dodgerblue; color: cornsilk">작성자</td>
