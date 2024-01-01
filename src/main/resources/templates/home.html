@@ -56,14 +56,14 @@
                 <th style="width: 10%">카테고리</th>
                 <th style="width: 45%">제목</th>
                 <th style="width: 15%">작성자</th>
-                <th style="width: 20%">등록일</th>
+<!--                <th style="width: 20%">등록일</th>-->
                 <th style="width: 10%">조회수</th>
             </tr>
             <tr th:each="boardLists : ${board}">
                 <td th:text="${boardLists.category}"></td>
                 <td><a th:text="${boardLists.title}" th:href="@{/board/{categories}/{id}(categories=${boardLists.category},id=${boardLists.boardId})}"></a></td>
                 <td th:text="${boardLists.writer}" >writer</td>
-                <td th:text="${#temporals.format(boardLists.dateTime, 'yyyy-dd-MM HH:mm')}"></td>
+<!--                <td th:text="${#temporals.format(boardLists.dateTime, 'yyyy-dd-MM HH:mm')}"></td>-->
                 <td th:text="${boardLists.count}">count></td>
             </tr>
             </forEach>

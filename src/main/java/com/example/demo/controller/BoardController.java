@@ -82,8 +82,10 @@ public class BoardController {
 
     @GetMapping("/board/{categories}/delete/{id}")
     public String deleteBoard(@PathVariable("categories") Categories categories,@PathVariable("id") Long id){
+        log.info("==delete in =====");
         boardService.deleteBoard(id);
         String end="redirect:/board/"+categories;
+        log.info("====delete end ===={}",end);
         return end;
     }
 

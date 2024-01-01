@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>글상세</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         table {
             width: 100%;
@@ -35,7 +36,9 @@
   </head>
   <body>
   <div style="display: flex; justify-content: center; padding-top:20px">
-    <h1 th:text="${category}"></h1>
+    <h1 th:text="${category}" ></h1>
+    <input type="hidden" class="class" id="boardid" th:value="${board.boardId}">
+    <input type="hidden" id="catee"  th:value="${category}">
   </div>
   <br/>
   <nav>
@@ -76,7 +79,8 @@
           <td colspan="2">
             <div style="text-align: right;">
               <button type="button" th:onclick="|location.href='@{/board/{categories}/update/{id}(categories=${board.category},id=${board.boardId})}'|">수정</button>
-              <button type="button" th:onclick="|location.href='@{/board/{categories}/delete/{id}(categories=${board.category},id=${board.boardId})}'|">삭제</button>
+<!--              <button type="button" th:onclick="|location.href='@{/board/{categories}/delete/{id}(categories=${board.category},id=${board.boardId})}'|">삭제</button>-->
+              <button type="button" id="delboard" onclick="deleteboard(); ">삭제</button>
             </div>
           </td>
         </tr>
@@ -87,5 +91,6 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" th:src="@{/js/boardinsert.js}"></script>
   </body>
 </html>
