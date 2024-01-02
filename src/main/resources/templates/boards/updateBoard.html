@@ -41,12 +41,12 @@
         <h2>글수정</h2>
         <br/>
         <!--    th:object="${boardEdit}"-->
-        <form th:action method="post" >
+        <form name="update" method="post" >
             <input type="hidden" name="id" id="id" th:value="${board.boardId}">
             <table style="width: 600px; margin: auto">
                 <tr>
                     <td width="70" style="background-color: dodgerblue; color: cornsilk">제목</td>
-                    <td><input type="text" th:field="${board.title}" placeholder="제목을 입력하세요. (20자 이하)" name="title"/></td>
+                    <td><input type="text" th:field="${board.title}" placeholder="제목을 입력하세요. (20자 이하)" id="title" name="title"/></td>
 
                 </tr>
                 <tr>
@@ -55,13 +55,14 @@
                 </tr>
                 <tr>
                     <td style="background-color: dodgerblue; color: cornsilk">내용</td>
-                    <td><textarea name="content" th:text="${board.content}" cols="50" rows="10"></textarea></td>
+                    <td><textarea name="content" th:text="${board.content}" id="content" cols="50" rows="10"></textarea></td>
                 </tr>
             </table>
             <div style="width:835px ;text-align: right; margin-top:10px">
-                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="button" onclick="updateboard()" class="btn btn-primary">등록</button>
             </div>
         </form>
     </div>
+    <script type="text/javascript" th:src="@{/js/board.js}"></script>
     </body>
 </html>

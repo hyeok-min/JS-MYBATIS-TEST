@@ -78,6 +78,7 @@
         <tr>
           <td colspan="2">
             <div style="text-align: right;">
+              <button type="button" th:onclick="|location.href='@{/board/{category}(category=${board.category})}'|">목록</button>
               <button type="button" th:onclick="|location.href='@{/board/{categories}/update/{id}(categories=${board.category},id=${board.boardId})}'|">수정</button>
 <!--              <button type="button" th:onclick="|location.href='@{/board/{categories}/delete/{id}(categories=${board.category},id=${board.boardId})}'|">삭제</button>-->
               <button type="button" id="delboard" onclick="deleteboard(); ">삭제</button>
@@ -91,6 +92,6 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" th:src="@{/js/boardinsert.js}"></script>
+  <script type="text/javascript" th:src="@{/js/board.js}"></script>
   </body>
 </html>
